@@ -1,3 +1,7 @@
+## 리액트 기초를 연습하기 위한 프로젝트
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
