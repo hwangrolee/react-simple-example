@@ -1,6 +1,7 @@
 ## 리액트 기초를 연습하기 위한 프로젝트
 
 ### 학습내용
+> react 공부 참고 사이트: https://velopert.com/reactjs-tutorials
 
 ##### 프로젝트생성
 > 기본 프로젝트 생성
