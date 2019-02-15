@@ -11,12 +11,14 @@ class App extends Component {
       id: 0,
       title: 'first todo title',
       description: 'first todo description',
-      author: 'hwangro lee'
+      author: 'hwangro lee',
+      enabled: true
     },{
       id: 1,
       title: 'second todo title',
       description: 'second todo description',
-      author: 'hwangro lee'
+      author: 'hwangro lee',
+      enabled: false
     }]
   }
 
@@ -26,7 +28,8 @@ class App extends Component {
         id: this.curId++,
         title: newItem.title,
         description: newItem.description,
-        author: newItem.author
+        author: newItem.author,
+        enabled: newItem.enabled
       })
     })
   }
@@ -48,7 +51,20 @@ class App extends Component {
             title: data.title,
             description: data.description,
             author: data.author,
+            enabled: data.enabled
           }
+        }
+
+        return todoItem;
+      })
+    })
+  }
+
+  onTodoItemEnableToggle = (todoItemId) => {
+    this.setState({
+      itemList: this.state.itemList.map(todoItem => {
+        if(todoItemId === todoItem.id) {
+          todoItem.enabled = !todoItem.enabled;
         }
 
         return todoItem;
@@ -65,7 +81,10 @@ class App extends Component {
           <TodoItemList 
             todoItemList={this.state.itemList} 
             onTodoItemRemove={this.onTodoItemRemove} 
-            onTodoItemUpdate={this.onTodoItemUpdate}/>)}/>
+            onTodoItemUpdate={this.onTodoItemUpdate}
+            onTodoItemEnableToggle={this.onTodoItemEnableToggle}
+          />)
+        }/>
       </div>
         
     );
