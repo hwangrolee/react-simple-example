@@ -5,9 +5,10 @@ import TodoInsertForm from './components/TodoInsertForm';
 // import './App.css';
 
 class App extends Component {
-
+  curId = 1
   state = {
     itemList: [{
+      id: 0,
       title: 'first todo title',
       description: 'first todo description',
       author: 'hwangro lee'
@@ -16,7 +17,20 @@ class App extends Component {
 
   onTodoItemCreate = (newItem) => {
     this.setState({
-      itemList: this.state.itemList.concat(newItem)
+      itemList: this.state.itemList.concat({
+        id: this.curId++,
+        title: newItem.title,
+        description: newItem.description,
+        author: newItem.author
+      })
+    })
+  }
+
+  onTodoItemRemove = (todoItemId) => {
+    this.setState({
+      itemList: this.state.itemList.filter(todoItem => {
+        return todoItemId !== todoItem.id;
+      })
     })
   }
 
@@ -25,7 +39,7 @@ class App extends Component {
       <div>
         <TodoInsertForm onCreateTodoItem={this.onTodoItemCreate}/>
         <hr/>
-        <TodoTemplate viewer={(<TodoItemList todoItemList={this.state.itemList}/>)}/>
+        <TodoTemplate viewer={(<TodoItemList todoItemList={this.state.itemList} onTodoItemRemove={this.onTodoItemRemove}/>)}/>
       </div>
         
     );

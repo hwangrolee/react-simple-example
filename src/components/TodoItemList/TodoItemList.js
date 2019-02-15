@@ -9,13 +9,12 @@ export default class TodoItemList extends Component {
 
     render() {
         const itemList = this.props.todoItemList.map(todoItem => {
-            return (<TodoItem todo={todoItem}/>)
+            return (<TodoItem todo={todoItem} onTodoItemRemove={this.props.onTodoItemRemove}/>)
         })
         return (
             <div>
                 {itemList}
-            </div>
-            
+            </div>  
         )
     }
 }

@@ -4,14 +4,26 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const TodoItem = ({todo}) => {
-    console.log('todoItem', todo);
-    const { author, title, description} = todo;
-    return (
-        <div className={cx('todo-item')}>
-            <strong>author</strong>: {author}, <strong>title</strong>: {title}, <strong>description</strong>: {description}
-        </div>
-    );
-}
+export default class TodoItem extends Component {
 
-export default TodoItem;
+    state = {
+        id: 0,
+        author: '',
+        title: '',
+        description: ''
+    }
+
+    render() {
+        const { id, author, title, description } = this.props.todo;
+        
+        return (
+            <div className={cx('todo-item')}>
+                <strong>ID</strong>: {id}, <strong>author</strong>: {author}, <strong>title</strong>: {title}, <strong>description</strong>: {description}
+                <span onClick={(e) => {
+                    e.preventDefault();
+                    this.props.onTodoItemRemove(id);
+                }}>&times;</span>
+            </div>
+        );
+    } 
+}
