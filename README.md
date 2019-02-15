@@ -15,8 +15,8 @@ npm init react-app react-simple-example
  - [X] todo 삭제 기능 구현.
  - [X] todo 수정 기능 구현.
  - [X] 쓸모없는 rendering을 피하기위해 life cycle api 를 통해 최적화 진행.
- - [] scss 로 디자인 작업.
- - [] todo 진행 여부 체크 기능 구현. 
+ - [X] todo 진행 여부 체크 기능 구현. 
+ - [ ] scss 로 디자인 작업.
 
 
 ---

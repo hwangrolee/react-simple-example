@@ -18,14 +18,17 @@ export default class TodoItemList extends Component {
 
 
     render() {
-        const { onTodoItemUpdate, onTodoItemRemove} = this.props;
+        const { onTodoItemUpdate, onTodoItemRemove, onTodoItemEnableToggle} = this.props;
 
         const itemList = this.props.todoItemList.map(todoItem => {
             return (<TodoItem 
                 key={todoItem.id}
                 todo={todoItem} 
                 onTodoItemRemove={onTodoItemRemove} 
-                onTodoItemUpdate={onTodoItemUpdate}/>)
+                onTodoItemUpdate={onTodoItemUpdate}
+                onTodoItemEnableToggle={onTodoItemEnableToggle}
+                
+            />)
         })
         return (
             <div>
