@@ -10,7 +10,8 @@ export default class TodoItem extends Component {
         author: '',
         title: '',
         description: '',
-        editing: false
+        editing: false,
+        enabled: true,
     }
 
     handleToggleEdit = () => {
@@ -21,7 +22,12 @@ export default class TodoItem extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if( this.state.editing === false && nextState.editing === false && nextProps.todo === this.props.todo) return false;
+        if( this.state.editing === false && nextState.editing === false && nextProps.todo === this.props.todo) {
+            if(this.state.enabled === nextState.enabled) {
+                return true;
+            }
+            return false;
+        }
         return true;
     }
 
@@ -32,13 +38,16 @@ export default class TodoItem extends Component {
                 id: todo.id,
                 author: todo.author,
                 title: todo.title,
-                description: todo.description
+                description: todo.description,
+                enabled: todo.enabled
             })
         } 
         if(!this.state.editing && prevState.editing) {
             this.props.onTodoItemUpdate(todo.id, this.state);
         }
     }
+
+    handleUpdateCancel
     
     handleChange = (e) => {
         this.setState({
@@ -48,7 +57,8 @@ export default class TodoItem extends Component {
 
     render() {
         const { editing } = this.state;
-        const { id, author, title, description } = this.props.todo;
+        const { todo, onTodoItemEnableToggle} =  this.props;
+        const { id, author, title, description, enabled } = todo;
         // console.log('render', this.props.todo);
         if(editing) {
             return (
@@ -58,7 +68,14 @@ export default class TodoItem extends Component {
                     <textarea name="description" placeholder="설명을 입력하세요" onChange={this.handleChange} value={this.state.description}/>
                     <div>
                         <button type="button" onClick={this.handleToggleEdit}>수정</button>
-                        {/* <button type="button" onClick={this.handleToggleEdit}>취소</button> */}
+                        <button type="button" onClick={(e) => {
+                            this.setState({
+                                author: author,
+                                title: title,
+                                description: description,
+                                editing: false
+                            });
+                        }}>취소</button>
                     </div>
                 </div>
             )
@@ -66,7 +83,13 @@ export default class TodoItem extends Component {
 
         return (
             <div className={cx('todo-item')}>
-                <strong>ID</strong>: {id}, <strong>author</strong>: {author}, <strong>title</strong>: {title}, <strong>description</strong>: {description}
+                <input type="checkbox" name="enabled" checked={enabled === false} onChange={(e) => {
+                    onTodoItemEnableToggle(id) 
+                }}/>
+                <div className={`${enabled === false && 'checked'}`}>
+                    <strong>ID</strong>: {id}, <strong>author</strong>: {author}, <strong>title</strong>: {title}, <strong>description</strong>: {description}
+
+                </div>
                 <span onClick={(e) => {
                     e.preventDefault();
                     this.props.onTodoItemRemove(id);
