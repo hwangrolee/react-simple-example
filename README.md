@@ -18,6 +18,10 @@ npm init react-app react-simple-example
  - [X] todo 진행 여부 체크 기능 구현. 
  - [ ] scss 로 디자인 작업.
 
+##### git 사용
+ - git flow를 사용.
+ - github issue 로 issue 처리.
+ - github pull request로 머지 작업.
 
 ---
 
