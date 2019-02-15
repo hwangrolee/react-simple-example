@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TodoTemplate from './components/TodoTemplate';
+import TodoItemList from './components/TodoItemList';
+import TodoInsertForm from './components/TodoInsertForm';
+// import './App.css';
 
 class App extends Component {
+
+  state = {
+    itemList: [{
+      title: 'first todo title',
+      description: 'first todo description',
+      author: 'hwangro lee'
+    }]
+  }
+
+  onTodoItemCreate = (newItem) => {
+    this.setState({
+      itemList: this.state.itemList.concat(newItem)
+    })
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <TodoInsertForm onCreateTodoItem={this.onTodoItemCreate}/>
+        <hr/>
+        <TodoTemplate viewer={(<TodoItemList todoItemList={this.state.itemList}/>)}/>
       </div>
+        
     );
   }
 }
