@@ -8,8 +8,14 @@ const cx = classNames.bind(styles);
 export default class TodoItemList extends Component {
 
     render() {
+        const {onTodoItemUpdate, onTodoItemRemove} = this.props;
+
         const itemList = this.props.todoItemList.map(todoItem => {
-            return (<TodoItem todo={todoItem} onTodoItemRemove={this.props.onTodoItemRemove}/>)
+            return (<TodoItem 
+                key={todoItem.id}
+                todo={todoItem} 
+                onTodoItemRemove={onTodoItemRemove} 
+                onTodoItemUpdate={onTodoItemUpdate}/>)
         })
         return (
             <div>

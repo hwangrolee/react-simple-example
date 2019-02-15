@@ -34,12 +34,33 @@ class App extends Component {
     })
   }
 
+  onTodoItemUpdate = (id, data) => {
+    this.setState({
+      itemList: this.state.itemList.map(todoItem => {
+        if(id === todoItem.id) {
+          return {
+            id: id,
+            title: data.title,
+            description: data.description,
+            author: data.author,
+          }
+        }
+
+        return todoItem;
+      })
+    })
+  }
+
   render() {
     return (
       <div>
         <TodoInsertForm onCreateTodoItem={this.onTodoItemCreate}/>
         <hr/>
-        <TodoTemplate viewer={(<TodoItemList todoItemList={this.state.itemList} onTodoItemRemove={this.onTodoItemRemove}/>)}/>
+        <TodoTemplate viewer={(
+          <TodoItemList 
+            todoItemList={this.state.itemList} 
+            onTodoItemRemove={this.onTodoItemRemove} 
+            onTodoItemUpdate={this.onTodoItemUpdate}/>)}/>
       </div>
         
     );
