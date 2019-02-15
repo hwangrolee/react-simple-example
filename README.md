@@ -20,6 +20,7 @@ npm init react-app react-simple-example
 
 ##### git 사용
  - git flow를 사용.
+   - 참고자료1 - https://ujuc.github.io/2015/12/16/git-flow-github-flow-gitlab-flow/
  - github issue 로 issue 처리.
  - github pull request로 머지 작업.
 
