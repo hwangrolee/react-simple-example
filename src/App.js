@@ -12,6 +12,11 @@ class App extends Component {
       title: 'first todo title',
       description: 'first todo description',
       author: 'hwangro lee'
+    },{
+      id: 1,
+      title: 'second todo title',
+      description: 'second todo description',
+      author: 'hwangro lee'
     }]
   }
 

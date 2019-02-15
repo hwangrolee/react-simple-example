@@ -1,5 +1,24 @@
 ## 리액트 기초를 연습하기 위한 프로젝트
 
+### 학습내용
+
+##### 프로젝트생성
+> 기본 프로젝트 생성
+
+```
+# https://github.com/facebook/create-react-app
+npm init react-app react-simple-example
+```
+
+##### todo 프로젝트를 위한 기능 설정
+ - [X] todo 생성 기능 구현.
+ - [X] todo 삭제 기능 구현.
+ - [X] todo 수정 기능 구현.
+ - [X] 쓸모없는 rendering을 피하기위해 life cycle api 를 통해 최적화 진행.
+ - [] scss 로 디자인 작업.
+ - [] todo 진행 여부 체크 기능 구현. 
+
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

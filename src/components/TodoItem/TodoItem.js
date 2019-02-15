@@ -20,6 +20,11 @@ export default class TodoItem extends Component {
         })
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if( this.state.editing === false && nextState.editing === false && nextProps.todo === this.props.todo) return false;
+        return true;
+    }
+
     componentDidUpdate(prevProps, prevState) {
         const { todo } = this.props;
         if(this.state.editing && !prevState.editing) {
@@ -44,7 +49,7 @@ export default class TodoItem extends Component {
     render() {
         const { editing } = this.state;
         const { id, author, title, description } = this.props.todo;
-        
+        // console.log('render', this.props.todo);
         if(editing) {
             return (
                 <div className={cx('todo-item')}>
